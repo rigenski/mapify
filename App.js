@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from "react";
+import { Text, View } from "react-native";
+import Home from "./screens/Home/Home";
+import Login from "./screens/Login/Login";
+import styles from "./styles/style";
 
 export default function App() {
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Mapify</Text>
+      </View>
+      {isLogin ? (
+        <Home setIsLogin={(val) => setIsLogin(val)} />
+      ) : (
+        <Login setIsLogin={(val) => setIsLogin(val)} />
+      )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
